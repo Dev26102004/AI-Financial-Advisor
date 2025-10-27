@@ -1,0 +1,6 @@
+flask
+streamlit
+requests
+matplotlib
+numpy
+mysql-connector-python
