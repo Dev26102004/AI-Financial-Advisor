@@ -27,7 +27,7 @@ Libraries: NumPy, Matplotlib, Requests
 
 ⚙️ Installation & Setup
 1️⃣ Clone the Repository
-git clone https://github.com/yourusername/AI-Financial-Advisor.git
+git clone https://github.com/Dev26102004/AI-Financial-Advisor.git
 cd AI-Financial-Advisor
 
 2️⃣ Install Dependencies
@@ -81,20 +81,3 @@ Personalized financial advice
 Suggested portfolio pie charts
 
 Savings vs expenses visualization
-
-📷 Screenshots
-
-(Optional – Add dashboard screenshots in the screenshots/ folder)
-
-✨ Future Improvements
-
-Add authentication & user profiles
-
-Connect to real-time market APIs
-
-Generate downloadable financial reports (PDF)
-
-👨‍💻 Developer
-
-Dev Yadav
-AI/ML Student | Passionate about building AI-powered tools
