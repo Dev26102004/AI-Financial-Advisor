@@ -2,13 +2,13 @@
 
 This project is an AI-driven personal financial assistant that helps users analyze income, expenses, and investments to provide actionable insights and portfolio advice.
 
-It uses Flask (MCP Server) for backend processing, Streamlit for visualization, and Ollama (Llama3) as the local LLM model to generate smart investment recommendations.
+It uses Flask for backend processing, Streamlit for visualization, and Ollama (Llama3) as the local LLM model to generate smart investment recommendations.
 
 🧩 Features
 
 ✅ Collects user financial inputs (income, expenses, goals, risk level)
 ✅ Runs Monte Carlo simulations for investment projection
-✅ Provides AI-generated financial advice via MCP Server & Llama3
+✅ Provides AI-generated financial advice via backend Server & Llama3
 ✅ Shows interactive charts using Matplotlib
 ✅ Stores session data in MySQL database
 ✅ Clean and modern Streamlit dashboard
@@ -17,7 +17,7 @@ It uses Flask (MCP Server) for backend processing, Streamlit for visualization, 
 
 Frontend: Streamlit
 
-Backend: Flask (MCP Server)
+Backend: Flask 
 
 AI Model: Llama3 via Ollama
 
@@ -62,8 +62,8 @@ CREATE TABLE sessions (
 
 Update your MySQL credentials in config.py.
 
-4️⃣ Start MCP Server (Flask)
-python mcp_server.py
+4️⃣ Start Backend Server (Flask)
+python backend_server.py
 
 5️⃣ Run Streamlit Frontend
 streamlit run app.py
