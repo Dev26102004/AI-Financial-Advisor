@@ -5,10 +5,9 @@ import time
 import re
 import numpy as np
 
-
+# ----------------------------
 BACKEND_URL = "http://127.0.0.1:5000"
 
-# ----------------------------
 def check_backend_server():
     try:
         res = requests.get(f"{BACKEND_URL}/get_sessions?limit=1")
@@ -16,10 +15,10 @@ def check_backend_server():
     except:
         return False
 
+# ----------------------------
 st.set_page_config(page_title="AI Financial Advisor", layout="wide")
 st.title("💼 AI Financial Advisor")
 
-# ----------------------------
 if check_backend_server():
     st.success("✅ Connected to Backend Server")
 else:
@@ -36,7 +35,7 @@ with st.expander("📝 Enter Your Financial Details", expanded=True):
         investments_raw = st.text_area("Existing Investments (comma-separated, e.g., Tesla, Infosys)")
         emergency_status = st.selectbox("Emergency Fund Status", ["Not Started", "In Progress", "Completed"])
 
-        # 🔥 Emergency fund logic
+        # Emergency fund logic
         if emergency_status == "Not Started":
             emergency_goal = 6 * expenses
             emergency_completed_amount = 0
@@ -77,7 +76,7 @@ if st.button("🚀 Run Financial Analysis"):
         "emergency_completed_amount": emergency_completed_amount,
     }
 
-    # 🔥 Monte Carlo call
+    # ---------------------------- MONTE CARLO CALL ----------------------------
     with st.spinner("Running Financial Projections..."):
         try:
             mc_data = requests.post(f"{BACKEND_URL}/run_projection", json=payload).json()
@@ -85,12 +84,30 @@ if st.button("🚀 Run Financial Analysis"):
             st.error(f"Failed to fetch projections: {e}")
             st.stop()
 
+    # ---------------------------- MONTE CARLO GRAPH ----------------------------
+    projections = mc_data["mc_projection"]
+
+    st.subheader("📈 Monte Carlo Simulation (Future Scenarios)")
+
+    plt.figure(figsize=(8, 5))
+
+    # Plot only first 50 simulations for clarity
+    for path in projections[:50]:
+        plt.plot(path, alpha=0.3)
+
+    plt.title("Monte Carlo Simulation")
+    plt.xlabel("Years")
+    plt.ylabel("Growth")
+    st.pyplot(plt.gcf())
+
     # ---------------------------- SAVINGS ----------------------------
     monthly_savings = income - expenses
     if emergency_status != "Completed":
         monthly_savings -= suggested_monthly_saving
 
     monthly_investment_capacity = max(0, monthly_savings)
+
+    st.write(f"💰 Monthly Investment Capacity: ₹{monthly_investment_capacity:.0f}")
 
     # ---------------------------- CURRENT PORTFOLIO ----------------------------
     allocation = {}
@@ -108,7 +125,6 @@ if st.button("🚀 Run Financial Analysis"):
     if total_weight > 0:
         allocation = {k: v / total_weight for k, v in allocation.items()}
 
-    # 🔥 Portfolio Chart
     plt.figure(figsize=(6, 6))
     plt.pie(allocation.values(), labels=allocation.keys(), autopct='%1.1f%%', startangle=90)
     plt.title("💹 Current Portfolio Allocation")
@@ -120,18 +136,9 @@ if st.button("🚀 Run Financial Analysis"):
     if show_llm:
         st.subheader("🧠 Personalized Financial Advice")
 
-        investment_options = {
-            "Stocks": "High risk, high return",
-            "Equity Mutual Funds": "Medium-High risk",
-            "Debt Mutual Funds": "Low-Medium risk",
-            "Liquid Funds": "Very low risk",
-            "Fixed Deposits": "Low risk",
-        }
-
         prompt_text = f"""
         You are a financial advisor AI.
 
-        User Data:
         Income: ₹{income}
         Expenses: ₹{expenses}
         Investment Capacity: ₹{monthly_investment_capacity}
