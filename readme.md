@@ -1,48 +1,38 @@
-💼 AI-Powered Financial Advisor
+# 💼 AI-Powered Financial Advisor
 
-This project is an AI-driven personal financial assistant that helps users analyze income, expenses, and investments to provide actionable insights and portfolio advice.
+This project is an AI-driven personal financial assistant that helps users analyze their income, expenses, and investments to generate actionable financial insights and personalized portfolio recommendations.
 
-It uses Flask for backend processing, Streamlit for visualization, and Ollama (Llama3) as the local LLM model to generate smart investment recommendations.
+The system uses a Flask backend for processing, a Streamlit frontend for visualization, and Ollama (Llama3) to generate intelligent financial advice.
 
-🧩 Features
+## 🧩 Features
 
-✅ Collects user financial inputs (income, expenses, goals, risk level)\n
-✅ Runs Monte Carlo simulations for investment projection
-✅ Provides AI-generated financial advice via backend Server & Llama3
-✅ Shows interactive charts using Matplotlib
-✅ Stores session data in MySQL database
-✅ Clean and modern Streamlit dashboard
+- Collects user financial inputs (income, expenses, investments, risk level)
+- Performs Monte Carlo simulations for future investment projections
+- Generates AI-based financial advice using LLM
+- Displays interactive visualizations using Matplotlib
+- Stores user session data in MySQL database
+- Provides a clean and intuitive Streamlit dashboard
 
-🏗️ Tech Stack
+## 🏗️ Tech Stack
 
-Frontend: Streamlit
+- Frontend: Streamlit
+- Backend: Flask
+- AI Model: Llama3 via Ollama
+- Database: MySQL
+- Libraries: NumPy, Matplotlib, Requests
 
-Backend: Flask 
+## ⚙️ Installation & Setup
 
-AI Model: Llama3 via Ollama
-
-Database: MySQL Workbench
-
-Libraries: NumPy, Matplotlib, Requests
-
-⚙️ Installation & Setup
-1️⃣ Clone the Repository
+### 1. Clone the Repository
 git clone https://github.com/Dev26102004/AI-Financial-Advisor.git
 cd AI-Financial-Advisor
 
-2️⃣ Install Dependencies
+### 2. Install Dependencies
 pip install -r requirements.txt
 
-3️⃣ Set Up MySQL Database
-
-Open MySQL Workbench
-
-Create a database:
+### 3. Set Up MySQL Database
 
 CREATE DATABASE financial_advisor;
-
-
-Create a table:
 
 CREATE TABLE sessions (
     ID INT AUTO_INCREMENT PRIMARY KEY,
@@ -59,25 +49,21 @@ CREATE TABLE sessions (
     Llm_reply TEXT
 );
 
+Update your database credentials in config.py.
 
-Update your MySQL credentials in config.py.
+### 4. Start Backend Server
+python backend.py
 
-4️⃣ Start Backend Server (Flask)
-python backend_server.py
-
-5️⃣ Run Streamlit Frontend
+### 5. Run Streamlit Frontend
 streamlit run app.py
 
-6️⃣ Make sure Ollama is running
+### 6. Start Ollama
 ollama serve
 
+## 📊 Outputs
 
-Check Ollama is running at http://127.0.0.1:11434
-
-📊 Outputs
-
-Personalized financial advice
-
-Suggested portfolio pie charts
-
-Savings vs expenses visualization
+- Monte Carlo simulation graph
+- Portfolio allocation charts
+- AI-generated financial advice
+- Savings insights
+- Stored session history
