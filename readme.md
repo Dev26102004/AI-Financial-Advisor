@@ -6,7 +6,7 @@ It uses Flask for backend processing, Streamlit for visualization, and Ollama (L
 
 🧩 Features
 
-✅ Collects user financial inputs (income, expenses, goals, risk level)
+✅ Collects user financial inputs (income, expenses, goals, risk level)\n
 ✅ Runs Monte Carlo simulations for investment projection
 ✅ Provides AI-generated financial advice via backend Server & Llama3
 ✅ Shows interactive charts using Matplotlib
